@@ -28,12 +28,9 @@ public class SpawnManager : MonoBehaviour
     {
         Instantiate(powerup, new Vector3(Random.Range(-10, 10), 7, 0), powerup.transform.rotation);
     }
-
     void SpawnObstacles()
     {
-        int randomNum = Random.Range(0, 3);
-
-
+        int randomNum = Random.Range(0, obstacles.Length);
         Instantiate(obstacles[randomNum], new Vector3(Random.Range(-10, 10), Random.Range(4, 8), 0), obstacles[randomNum].transform.rotation);
 
     }

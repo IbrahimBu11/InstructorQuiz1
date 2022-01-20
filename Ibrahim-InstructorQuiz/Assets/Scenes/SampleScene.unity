@@ -157,6 +157,7 @@ MonoBehaviour:
   - {fileID: 2781169989904583271, guid: a3fd7fbb47730cb46bb86fb1649e96be, type: 3}
   - {fileID: 5639647978676122742, guid: 8739cb80e5cb5d64b9840980d1e348e5, type: 3}
   - {fileID: 4149246491217471361, guid: bf7e7cbd8c9172943a12f46f0371594d, type: 3}
+  powerup: {fileID: 654797874399153579, guid: d778f10027105ec45b98cc249caf2ac9, type: 3}
 --- !u!4 &115046388
 Transform:
   m_ObjectHideFlags: 0
@@ -1546,7 +1547,9 @@ MonoBehaviour:
   hp: {fileID: 1476339722}
   text: {fileID: 332169045}
   gameOver: 0
+  hasPowerup: 0
   bullet: {fileID: 1876577799397102924, guid: 9fb3bfc3908e97441b4d640ae622e0a5, type: 3}
+  bulletbig: {fileID: 1876577799397102924, guid: e6ebe3d5e56d12c4c8187de5d51aa69f, type: 3}
   shooter: {fileID: 341686652}
 --- !u!136 &2136217147
 CapsuleCollider:

@@ -16,8 +16,11 @@ public class PlayerMovement : MonoBehaviour
     private bool canShoot = true;
     public bool gameOver = false;
     public bool hasPowerup = false;
+    
 
     public GameObject bullet;
+    public GameObject bulletbig;
+    public GameObject PowerUpEffect;
     public Transform shooter;
     // Start is called before the first frame update
     void Start()
@@ -30,12 +33,18 @@ public class PlayerMovement : MonoBehaviour
     {
         hp.value = health;
 
+        if (hasPowerup)
+            PowerUpEffect.SetActive(true);
+        else
+            PowerUpEffect.SetActive(false);
+            
+
         horizontal = Input.GetAxis("Horizontal");
         Movement();
 
         //Shoot on input and with a fire Rate
         if (Input.GetKey(KeyCode.Space) && canShoot)
-            StartCoroutine(Shoot());
+            StartCoroutine(Shoot(hasPowerup));
 
         //Add slow time scale animation and enable reset option
         if (gameOver)
@@ -44,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
             text.SetActive(true);
             if (Input.GetKey(KeyCode.R))
             {
+                Time.timeScale = 1f;
                 SceneManager.LoadScene(0);
             }
         }
@@ -63,11 +73,16 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector3(-13, 0, 0);
     }
 
-    IEnumerator Shoot()
+    IEnumerator Shoot(bool hasPowerup)
     {
         canShoot = false;
+        if(hasPowerup)
+            Instantiate(bulletbig, shooter.position, bullet.transform.rotation);
+        else
         Instantiate(bullet, shooter.position, bullet.transform.rotation);
-        yield return new WaitForSeconds(0.1f);
+        
+
+        yield return new WaitForSeconds(0.4f);
         canShoot = true;
     }
     private void OnTriggerEnter(Collider other)

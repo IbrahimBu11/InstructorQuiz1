@@ -17,6 +17,7 @@ public class BallScript : MonoBehaviour
     public Rigidbody rb;
 
     public GameObject[] balls;
+    public GameObject explosion;
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -36,8 +37,9 @@ public class BallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //checkGameObject();
         //Destroy gameobject and reset health so prefab is reset
-        if(health < 0)
+        if (health < 0)
         {
             ResetnKill();
         }
@@ -58,7 +60,7 @@ public class BallScript : MonoBehaviour
             Fission(Ballnum);            
         }
 
-
+        
 
     }
     private void OnCollisionEnter(Collision collision)
@@ -82,25 +84,30 @@ public class BallScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        takeDamage(damage);
+        //takeDamage(damage);
+        if (other.gameObject.name.StartsWith("Bullet")) { 
+            if (!isBall1)
+            Fission(Ballnum);
+        ResetnKill();
+        
         Destroy(other.gameObject);
+        }
     }
     void checkGameObject()
-    {
-        if (gameObject.name == "Ball3") 
+    {        
+        if (gameObject.name.StartsWith("Ball3")) 
         { 
             damage = 20;
-            Ballnum = 2;
-        }
-        if (gameObject.name == "Ball2")
-        {
-            damage = 30;
             Ballnum = 1;
         }
-        if (gameObject.name == "Ball1") {
+        if (gameObject.name.StartsWith("Ball2"))  
+        {
+            damage = 30;
+            Ballnum = 0;
+        }
+        if (gameObject.name.StartsWith("Ball1")) { 
             damage = 50;
-            isBall1 = true;
-            
+            isBall1 = true;            
         }
 
     }
@@ -111,9 +118,9 @@ public class BallScript : MonoBehaviour
             for (int i = 0; i < 2; i++)
             {
                 Instantiate(balls[Ballnum], transform.position, balls[Ballnum].transform.rotation);
+                GameObject ex = Instantiate(explosion, transform.position, explosion.transform.rotation);
+                Destroy(ex, 1f);
             }
-        
-        
         
     }
 }
