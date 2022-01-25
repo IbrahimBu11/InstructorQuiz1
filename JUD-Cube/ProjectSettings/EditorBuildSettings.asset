@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SliderGame.unity
+    path: Assets/Scenes/SliderGame.unity
     guid: 6855495bde275b5458c5f0f002f78abb
   m_configObjects: {}
