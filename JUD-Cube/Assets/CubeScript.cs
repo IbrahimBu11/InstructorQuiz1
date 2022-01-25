@@ -13,6 +13,8 @@ public class CubeScript : MonoBehaviour
     private float rotateSpeed = 50;
 
     private Vector3 initialScale, currentScale, maximumScale;
+
+    private Color[] colors = {Color.blue, Color.red, };
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +46,7 @@ public class CubeScript : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
           if (!CompareVector3s(currentScale,maximumScale))
-               transform.localScale += Vector3.one * Time.deltaTime * scaleSpeed;          
+               transform.localScale += Vector3.one * Time.deltaTime * scaleSpeed;               
         }
         else if (!CompareVector3s(currentScale, initialScale))
             transform.localScale -= Vector3.one * Time.deltaTime * scaleSpeed;
